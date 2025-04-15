@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 int main (){
 
 // Esse é o código do jogo super trunfo um jogo de cartas super divertido onde o usúario vai se divertir muito.
@@ -13,7 +14,7 @@ int main (){
     // Número de Pontos Turísticos: A quantidade de pontos turísticos na cidade. Tipo: int
     // Após o usuário inserir os dados de cada carta, seu programa deve exibir na tela as informações cadastradas, de forma organizada e legível.
     
-    
+    char pais[50]; //Variavel para País
     char estado[50];   //Variavel para estado
     char cdgcarta[50];  //Variavél para código de carta
     char ncidade[50];  //Variavel para cidade
@@ -28,7 +29,7 @@ int main (){
 
 
     // Variaveis da carta 2.
-    
+    char pais_b[50]; //Variavel para País
     char estado_b[50];   //Variavel para estado
     char cdgcarta_b[50];  //Variavél para código de carta
     char ncidade_b[50];  //Variavel para cidade
@@ -41,6 +42,11 @@ int main (){
     long double superpoder_b; // Variavel para super poder
     float inversiondensidade_b; // Variavel para calculo da densidade ivertida
 
+    // Variavel para escolha do menu.
+    int escolhaopcao;
+    
+    
+    
     // variavel de comparação de cartas
     /*
     float result_area;
@@ -61,6 +67,8 @@ int main (){
     //Inicio do código de interação
     
     printf ("Vamos começar inserindo os dados da carta 1 \n");
+    printf ("Insira o nome do País da sua carta:\n");
+    scanf ("%s", pais);
     printf ("Insira as iniciais do estados: \n");
     scanf ("%s", &estado);
     printf ("Insira a letra do estado seguida de um número de 01 a 04 (ex: A01, B03): \n");
@@ -99,6 +107,7 @@ int main (){
    //Código para exibir na tela os dados da carta 1.
     printf ("\n\n");
     printf ("Carta 1: \n");
+    printf ("País: %s\n", pais);
     printf ("Estado: %s\n", estado);
     printf ("Código: %s\n", cdgcarta);
     printf ("Nome da cidade: %s\n", ncidade);
@@ -113,6 +122,8 @@ int main (){
     // Segunda fase inserindo os codigos da carta 2.
     printf ("\n\n");
     printf ("Agora vamos inserir os dados da carta 2 \n");
+    printf ("Insira o nome do País da sua carta:\n");
+    scanf ("%s", pais_b);
     printf ("Insira as iniciais do estados: \n");
     scanf ("%s", &estado_b);
     printf ("Insira a letra do estado seguida de um número de 01 a 04 (ex: A01, B03): \n");
@@ -150,6 +161,7 @@ int main (){
     
     printf ("\n \n");
     printf ("Carta 2: \n");
+    printf ("País: %s\n", pais_b);
     printf ("Estado: %s\n", estado_b);
     printf ("Código: %s\n", cdgcarta_b);
     printf ("Nome da cidade: %s\n", ncidade_b);
@@ -162,8 +174,120 @@ int main (){
     printf ("Super Poder: %.2Lf\n\n", superpoder_b);
 
     // Comparação de atributos
+    printf ("\n\n"); 
+    printf ("####Escolha um dos atributos para comparação!####\n");
+    printf ("1. População:\n");
+    printf ("2. Área:\n");
+    printf ("3. PIB:\n");
+    printf ("4. Números de ponto turisticos:\n");
+    printf ("5. Densidade Populacional:\n");
+    scanf ("%d", &escolhaopcao);
+
+    printf ("\n\n");
+
+    switch (escolhaopcao)
+    {
+    case 1:
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: População\n");
+        printf ("Carta 1: %lu\n", populacao);
+        printf ("Carta 2: %lu\n", populacao_b);
+        break;
+        case 2:
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Área\n");
+        printf ("Carta 1: %2.f\n", area);
+        printf ("Carta 2: %2.f\n", area_b);
+        break;
+        case 3:
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: PIB\n");
+        printf ("Carta 1: %.2Lf\n", pib);
+        printf ("Carta 2: %.2Lf\n", pib_b);
+        break;
+        case 4:
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Números de pontos turisticos\n");
+        printf ("Carta 1: %d\n", nturisticos);
+        printf ("Carta 2: %d\n", nturisticos_b);
+       
+        break;
+        case 5:
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Densidade populacional\n");
+        printf ("Carta 1: %.2f\n", densidadepop);
+        printf ("Carta 2: %2.f\n", densidadepop_b);
+        
+        break;
+    
+    default:
+    printf ("Opção inválida!");
+        break;
+    }
+    
+    if (escolhaopcao == 1) {
+    if (populacao > populacao_b ) {
+        printf ("População: Carta 1 venceu\n");
+    } else if (populacao < populacao_b) {
+        printf ("População: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+}
+
+    
+    if (escolhaopcao == 2){
+    if (area > area_b ) {
+        printf ("Área: Carta 1 venceu\n");
+    } else if (area < area_b) {
+        printf ("Área: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+}
+
+    
+    if (escolhaopcao == 3) {
+    if (pib > pib_b ) {
+        printf ("PIB: Carta 1 venceu\n");
+    } else if (pib < pib_b) {
+        printf ("PIB: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+    }
+    
+    if (escolhaopcao == 4) {
+    if (nturisticos > nturisticos_b ) {
+        printf ("Números de pontos turisticos: Carta 1 venceu\n");
+    } else if (nturisticos < nturisticos_b) {
+        printf ("Números de pontos turisticos: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+    }
+    
+    if (escolhaopcao == 5) {
+    if (densidadepop < densidadepop_b ) {
+        printf ("Densidade Populacional: Carta 1 venceu\n");
+    } else if (densidadepop > densidadepop_b) {
+        printf ("Densidade Populacional: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+}
 
 
+   
+
+
+
+
+
+
+
+
+    /*
     printf ("Comparação de cartas:(Atributo População)\n\n ");
     printf("Carta 1 - %s (%s): %lu\n", ncidade, estado, populacao);
     printf("Carta 2 - %s (%s): %lu\n", ncidade_b, estado_b, populacao_b);
@@ -219,7 +343,7 @@ int main (){
     } else {
         printf ("Densidade Populacional: Carta 2 venceu\n");
     }
-
+     */
 
 
    
