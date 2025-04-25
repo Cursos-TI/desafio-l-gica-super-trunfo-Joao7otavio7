@@ -1,12 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <string.h>
-typedef struct 
-{
+int main (){
+
+// Esse é o código do jogo super trunfo um jogo de cartas super divertido onde o usúario vai se divertir muito.
+    // Recomendaões.
+    // Criar um programa em C que permita ao usuário inserir os dados de duas cartas do Super Trunfo. Para cada carta, o usuário deverá fornecer as seguintes informações:
+    // Estado: Uma letra de 'A' a 'H' (representando um dos oito estados). Tipo: char
+    // Código da Carta: A letra do estado seguida de um número de 01 a 04 (ex: A01, B03). Tipo: char[] (um array de caracteres, ou string)
+    // Nome da Cidade: O nome da cidade. Tipo: char[] (string)
+    // População: O número de habitantes da cidade. Tipo: int
+    // Área (em km²): A área da cidade em quilômetros quadrados. Tipo: float
+    // PIB: O Produto Interno Bruto da cidade. Tipo: float
+    // Número de Pontos Turísticos: A quantidade de pontos turísticos na cidade. Tipo: int
+    // Após o usuário inserir os dados de cada carta, seu programa deve exibir na tela as informações cadastradas, de forma organizada e legível.
+    
+    
     char pais[50]; //Variavel para País
     char estado[50];   //Variavel para estado
-    char cdg[50];  //Variavél para código de carta
+    char cdgcarta[50];  //Variavél para código de carta
     char ncidade[50];  //Variavel para cidade
     unsigned long int populacao;  //Variavel para população
     float area;     //Variavel para area²
@@ -14,320 +25,271 @@ typedef struct
     int nturisticos;  // Variavel para pontos turisticos
     float densidadepop; // Variavel para densidade populacional
     long double rendapercapita; // Variavel para Renda per capta
-    long double superpoder; // Variavel para"A01", super poder.
+    long double superpoder; // Variavel para super poder.
     float inversiondensidade; // Variavel para calculo da densidade ivertida
-} carta;
 
-//Função para exibir os atributos das cartas
-void mostrarCarta(carta c){
-    printf ("\n\n");
-    printf ("Carta 1: \n");
-    printf ("País: %s\n", c.pais);
-    printf ("Estado: %s\n", c.estado);
-    printf ("Código: %s\n", c.cdg);
-    printf ("Nome da cidade: %s\n", c.ncidade);
-    printf ("População: %lu\n", c.populacao);
-    printf ("Àrea: %.2f km²\n", c.area);
-    printf ("PIB: %.2Lf bilhões de reais\n", c.pib);
-    printf ("Números de Pontos Turísticos: %d\n", c.nturisticos);
-    printf ("Densidade Populacional: %.2f hab/km²\n", c.densidadepop);
-    printf ("PIB per Capita: %.2Lf reais\n", c.rendapercapita);
-    printf ("Super Poder: %.2Lf\n", c.superpoder);
-}
 
-// Função para retornar o nome do atributo
-char* nomeAtributo(int codigo) {
-    switch (codigo) {
-        case 1: return "População";
-        case 2: return "Área";
-        case 3: return "PIB";
-        case 4: return "Densidade Populacional";
-        case 5: return "Pontos Turísticos";
-        case 6: return "Renda per Capita";
-        case 7: return "Superpoder";
-        default: return "Desconhecido";
-    }
-}
+    // Variaveis da carta 2.
+    char pais_b[50]; //Variavel para País
+    char estado_b[50];   //Variavel para estado
+    char cdgcarta_b[50];  //Variavél para código de carta
+    char ncidade_b[50];  //Variavel para cidade
+    unsigned long int populacao_b;  //Variavel para população
+    float area_b;     //Variavel para area²
+    long double pib_b;      //Variavel para PIB
+    int nturisticos_b;  // Variavel para pontos turisticos
+    float densidadepop_b; // Variavel para densidade populacional
+    long double rendapercapita_b; // Variavel para Renda per capta
+    long double superpoder_b; // Variavel para super poder
+    float inversiondensidade_b; // Variavel para calculo da densidade ivertida
 
-int main (){
-    long double somajogador, somacomputador;
-
-// Esse é o código do jogo super trunfo um jogo de cartas super divertido onde o usúario vai se divertir muito.
-    //Somente para sorteio.
-    srand(time(NULL));
+    // Variavel para escolha do menu.
+    int escolhaopcao;
     
-    //Cartas prédefinidas
-    carta cartaA = {"Brasil", "SP", "A01", "São Paulo",  11451245, 1521.00, 748000000000, 36};
-    carta cartaB = {"Argentina", "CABA", "B01", "Buenos Aires", 3121000, 203.00, 111808600, 15};
+    
+    
+    // variavel de comparação de cartas
+    /*
+    float result_area;
+    unsigned long int result_pop;
+    long double result_pib;
+    int reult_nturisticos;
+    float result_densi;
+    long double result_percapita;
+    long double result_superpoder;
+    */
+     
+
+
+    //Introdução do jogo.
+    
+    printf ("*** Super Trunfo: Nações e Regiões***\n");
+    
+    //Inicio do código de interação
+    
+    printf ("Vamos começar inserindo os dados da carta 1 \n");
+    printf ("Insira o nome do País da sua carta:\n");
+    scanf ("%s", pais);
+    printf ("Insira as iniciais do estados: \n");
+    scanf ("%s", &estado);
+    printf ("Insira a letra do estado seguida de um número de 01 a 04 (ex: A01, B03): \n");
+    scanf ("%s", &cdgcarta);
+    printf ("Insira o nome da cidade: \n");
+    scanf ("%s", &ncidade);
+    printf ("Insira o número de habitantes da cidade: \n");
+    scanf ("%lu", &populacao);
+    printf ("Insira a área da cidade em quilômetros quadrados: \n");
+    scanf ("%f", &area);
+    printf ("Insira o PIB (Produto Interno Bruto da cidade): \n");
+    scanf ("%Lf", &pib);
+    printf ("Insira a quantidade de pontos turísticos na cidade: \n");
+    scanf ("%d", &nturisticos);
 
 
      // Calculo de densidade populacional 
 
-    cartaA.densidadepop = (cartaA.populacao / cartaA.area );
-    cartaB.densidadepop = (cartaB.populacao / cartaB.area );
+    densidadepop = (populacao / area );
 
     // Calculo de para renda per capita
     
-    cartaA.rendapercapita = (cartaA.pib / cartaA.populacao);
-    cartaB.rendapercapita = (cartaB.pib / cartaB.populacao);
+    rendapercapita = (pib / populacao);
 
     // calcular a densidade invertida
 
-   cartaA.inversiondensidade = 1 / cartaA.densidadepop;
-   cartaB.inversiondensidade = 1 / cartaA.densidadepop;
+    inversiondensidade = 1 / densidadepop;
 
     // calcular o super poder
 
-   cartaA.superpoder = (cartaA.populacao + cartaA.pib + cartaA.area+ cartaA.nturisticos +
-                  cartaA.rendapercapita + cartaA.inversiondensidade);
-    cartaB.superpoder = (cartaA.populacao + cartaA.pib + cartaA.area + cartaA.nturisticos +
-        cartaA.rendapercapita + cartaA.inversiondensidade);
+    superpoder = (populacao + pib + area + nturisticos +
+        rendapercapita + inversiondensidade);
 
-   
-    carta jogador,computador;
-    int escolha,escolhacomputador1,escolhacomputador2,escolhaatributo1,escolhaatributo2;
 
-    printf("Escolha sua carta:\n1 - Carta A (São Paulo)\n2 - Carta B (Buenos Aires)\n");
-    scanf("%d", &escolha);
-    if (escolha == 1) {
-        jogador = cartaA;
-        computador = cartaB;
-    } else {
-        jogador = cartaB;
-        computador = cartaA;
-    }
 
-    printf("\nSua carta é:\n");
-    mostrarCarta(jogador);
+   //Código para exibir na tela os dados da carta 1.
+    printf ("\n\n");
+    printf ("Carta 1: \n");
+    printf ("País: %s\n", pais);
+    printf ("Estado: %s\n", estado);
+    printf ("Código: %s\n", cdgcarta);
+    printf ("Nome da cidade: %s\n", ncidade);
+    printf ("População: %lu\n", populacao);
+    printf ("Àrea: %.2f km²\n", area);
+    printf ("PIB: %.2Lf bilhões de reais\n", pib);
+    printf ("Números de Pontos Turísticos: %d\n", nturisticos);
+    printf ("Densidade Populacional: %.2f hab/km²\n", densidadepop);
+    printf ("PIB per Capita: %.2Lf reais\n", rendapercapita);
+    printf ("Super Poder: %.2Lf\n", superpoder);
 
-    printf ("\n Escolha o primeiro atributo para comparar:\n");
-    printf ("1 - População:\n2 - Área em km²\n3 - PIB\n4 - Densidade Populacional\n5 - Números de pontos Turisticos\n6 - Renda per capita\n7 - Superpoder\n");
-    scanf ("%d", &escolhaatributo1);
-    printf ("\n Escolha o segundo atributo:\n");
-    scanf ("%d", &escolhaatributo2);
+    // Segunda fase inserindo os codigos da carta 2.
+    printf ("\n\n");
+    printf ("Agora vamos inserir os dados da carta 2 \n");
+    printf ("Insira o nome do País da sua carta:\n");
+    scanf ("%s", pais_b);
+    printf ("Insira as iniciais do estados: \n");
+    scanf ("%s", &estado_b);
+    printf ("Insira a letra do estado seguida de um número de 01 a 04 (ex: A01, B03): \n");
+    scanf ("%s", &cdgcarta_b);
+    printf ("Insira o nome da cidade: \n");
+    scanf ("%s", &ncidade_b);
+    printf ("Insira o número de habitantes da cidade: \n");
+    scanf ("%lu", &populacao_b);
+    printf ("Insira a área da cidade em quilômetros quadrados: \n");
+    scanf ("%f", &area_b);
+    printf ("Insira o PIB (Produto Interno Bruto da cidade): \n");
+    scanf ("%Lf", &pib_b);
+    printf ("Insira a quantidade de pontos turísticos na cidade: \n");
+    scanf ("%d", &nturisticos_b);
 
-    if (escolhaatributo1 == escolhaatributo2) {
-        printf ("Você já escolheu esse atributo! Escolha outro diferente:\n");
-        scanf ("%d", &escolhaatributo2);
-    }
-    // Computador escolhe aleatoriamente um atributo
-    escolhacomputador1 = (rand() % 7) + 1;
-    escolhacomputador2 = (rand() % 7) + 1;
-    if (escolhacomputador1 == escolhacomputador2) {
-        escolhacomputador2 = (rand() % 7) + 1;
-    }
+    // Calculo de densidade populacional
 
-    printf ("Computador escolheu os atributos %d, e %d\n", escolhacomputador1, escolhacomputador2);
+    densidadepop_b = (populacao_b / area_b );
 
-    float valorjogador1,valorjogador2,valorcomputador1,valorcomputador2;
+    // Calculo de para renda per capita
+    
+    rendapercapita_b = (pib_b / populacao_b);
 
-    switch (escolhaatributo1)
+    // calcular a densidade invertida
+
+    inversiondensidade_b = 1 / densidadepop_b;
+
+    // calcular o super poder
+
+    superpoder_b = (populacao_b + pib_b + area_b + nturisticos_b +
+                  rendapercapita_b + inversiondensidade_b);
+
+    
+    // Código para exibir na tela os dados da carta 2.
+    
+    printf ("\n \n");
+    printf ("Carta 2: \n");
+    printf ("País: %s\n", pais_b);
+    printf ("Estado: %s\n", estado_b);
+    printf ("Código: %s\n", cdgcarta_b);
+    printf ("Nome da cidade: %s\n", ncidade_b);
+    printf ("População: %lu\n", populacao_b);
+    printf ("Àrea: %.2f km²\n", area_b);
+    printf ("PIB: %.2Lf bilhões de reais\n", pib_b);
+    printf ("Números de Pontos Turísticos: %d\n", nturisticos_b);
+    printf ("Densidade Populacional: %.2f hab/km²\n", densidadepop_b);
+    printf ("PIB per Capita: %.2Lf reais\n", rendapercapita_b);
+    printf ("Super Poder: %.2Lf\n\n", superpoder_b);
+
+    // Comparação de atributos
+    printf ("\n\n"); 
+    printf ("####Escolha um dos atributos para comparação!####\n");
+    printf ("1. População:\n");
+    printf ("2. Área:\n");
+    printf ("3. PIB:\n");
+    printf ("4. Números de ponto turisticos:\n");
+    printf ("5. Densidade Populacional:\n");
+    scanf ("%d", &escolhaopcao);
+
+    printf ("\n\n");
+
+    switch (escolhaopcao)
     {
     case 1:
-        valorjogador1 = jogador.populacao;    
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: População\n");
+        printf ("Carta 1: %lu\n", populacao);
+        printf ("Carta 2: %lu\n", populacao_b);
         break;
         case 2:
-        valorjogador1 = jogador.area;
-        printf("\n%s: %.2f", nomeAtributo(escolhaatributo1), valorjogador1);       
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Área\n");
+        printf ("Carta 1: %2.f\n", area);
+        printf ("Carta 2: %2.f\n", area_b);
         break;
         case 3:
-        valorjogador1 = jogador.pib; 
-        printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo1), valorjogador1);       
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: PIB\n");
+        printf ("Carta 1: %.2Lf\n", pib);
+        printf ("Carta 2: %.2Lf\n", pib_b);
         break;
         case 4:
-        valorjogador1 = jogador.densidadepop;  
-        printf("\n%s: %.2f", nomeAtributo(escolhaatributo1), valorjogador1);      
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Números de pontos turisticos\n");
+        printf ("Carta 1: %d\n", nturisticos);
+        printf ("Carta 2: %d\n", nturisticos_b);
+       
         break;
         case 5:
-        valorjogador1 = jogador.nturisticos;
-        printf("\n%s: %d", nomeAtributo(escolhaatributo1), valorjogador1);       
+        printf ("%s vs %s\n", pais, pais_b);
+        printf ("Atributo selecionado: Densidade populacional\n");
+        printf ("Carta 1: %.2f\n", densidadepop);
+        printf ("Carta 2: %2.f\n", densidadepop_b);
+        
         break;
-        case 6:
-        valorjogador1 = jogador.rendapercapita; 
-        printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo1), valorjogador1);       
-        break;
-        case 7:
-        valorjogador1 = jogador.superpoder;
-        printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo1), valorjogador1);
-        break;
-
     
-        default:
+    default:
     printf ("Opção inválida!");
         break;
     }
-
-    switch (escolhaatributo2)
-    {
-    case 1:
-        valorjogador2 = jogador.populacao;
-        printf("\n%s: %lu", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 2:
-        valorjogador2 = jogador.area;
-        printf("\n%s: %.2f", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 3:
-        valorjogador2 = jogador.pib;
-        printf("\n%s: %.2lu", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 4:        
-        valorjogador2 = jogador.densidadepop;
-        printf("\n%s: %.2f", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 5:       
-        valorjogador2 = jogador.nturisticos;
-        printf("\n%s: %d", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 6:       
-        valorjogador2 = jogador.rendapercapita;
-        printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-        case 7:        
-        valorjogador2 = jogador.superpoder;
-        printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo2), valorjogador2);
-        break;
-
     
-        default:
-    printf ("Opção inválida!");
-        break;
-    }
-
-
-    switch (escolhacomputador1)
-    {
-    case 1:
-        valorcomputador1 = computador.populacao;        
-        break;
-        case 2:
-        valorcomputador1 = computador.area;        
-        break;
-        case 3:
-        valorcomputador1 = computador.pib;       
-        break;
-        case 4:
-        valorcomputador1 = computador.densidadepop;        
-        break;
-        case 5:
-        valorcomputador1 = computador.nturisticos;        
-        break;
-        case 6:
-        valorcomputador1 = computador.rendapercapita;        
-        break;
-        case 7:
-        valorcomputador1 = computador.superpoder;        
-        break;
-
-    
-        default:
-    printf ("Opção inválida!");
-        break;
-    }
-
-    switch (escolhacomputador2)
-    {
-    case 1:       
-        valorcomputador2 = computador.populacao;
-        break;
-        case 2:        
-        valorcomputador2 = computador.area;
-        break;
-        case 3:       
-        valorcomputador2 = computador.pib;
-        break;
-        case 4:        
-        valorcomputador2 = computador.densidadepop;
-        break;
-        case 5:       
-        valorcomputador2 = computador.nturisticos;
-        break;
-        case 6:        
-        valorcomputador2 = computador.rendapercapita;
-        break;
-        case 7:        
-        valorcomputador2 = computador.superpoder;
-        break;
-
-    
-        default:
-    printf ("Opção inválida!");
-        break;
-    }
-
-    somajogador = (escolhaatributo1 + escolhaatributo2);
-    somacomputador = (escolhacomputador1 + escolhacomputador2);
-
-   
-
-    printf("\n==============================\n");
-    printf("Comparando as cartas...\n");
-
-    printf("\nVocê escolheu a carta do país: %s", jogador.pais);
-    printf("\nO computador ficou com a carta do país: %s\n", computador.pais);
-
-    printf("\nAtributos escolhidos pelo Jogador: %s e %s\n",
-        nomeAtributo(escolhaatributo1), nomeAtributo(escolhaatributo2));
-    printf("\nAtributos escolhidos pelo Computador: %s e %s\n",
-            nomeAtributo(escolhacomputador1), nomeAtributo(escolhacomputador2));
-    
-    printf("\nValores do jogador:");
-    if (escolhaatributo1 = 1){
-        printf("\n%s: %lu", nomeAtributo(escolhaatributo1), valorjogador1);
-    }
-
-    if (escolhaatributo2 = 2) {
-        printf("\n%s: %.2f", nomeAtributo(escolhaatributo2), valorjogador2);
-
-    }
-
-
-
-   /* printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo1), valorjogador1);*/
-    /*printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo2), valorjogador2);*/
-
-    printf ("\nSoma atributos jogador:%.2Lf", somajogador);
-
-    printf("\n\nValores do computador:");
-    printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo1), valorcomputador1);
-    printf("\n%s: %.2Lf", nomeAtributo(escolhaatributo2), valorcomputador2);
-    printf ("\nSoma atributos compupatador: %.2Lf", somacomputador);
-
-
-
-
-
-
-    /*
-    printf("\nResultado:\n");
-    printf("Seu valor: %.2f, %.2f\n", valorjogador1, valorjogador2);
-    printf("Valor do computador: %.2f, %.2f\n", valorcomputador1, valorcomputador2);
-
-    */
-
-    if (valorjogador1 > valorcomputador1 && valorjogador2 > valorcomputador2) {
-        printf("\nParabéns! Você venceu!\n");
-    } else if (valorjogador1 < valorcomputador1 && valorjogador2 < valorcomputador2) {
-        printf("\nComputador venceu!\n");
+    if (escolhaopcao == 1) {
+    if (populacao > populacao_b ) {
+        printf ("População: Carta 1 venceu\n");
+    } else if (populacao < populacao_b) {
+        printf ("População: Carta 2 venceu\n");
     } else {
-        printf("\nEmpate!\n");
+        printf ("Empate !!!\n");
     }
-
-
-
-
-
-
-
-
-
-
+}
 
     
+    if (escolhaopcao == 2){
+    if (area > area_b ) {
+        printf ("Área: Carta 1 venceu\n");
+    } else if (area < area_b) {
+        printf ("Área: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+}
+
     
+    if (escolhaopcao == 3) {
+    if (pib > pib_b ) {
+        printf ("PIB: Carta 1 venceu\n");
+    } else if (pib < pib_b) {
+        printf ("PIB: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+    }
+    
+    if (escolhaopcao == 4) {
+    if (nturisticos > nturisticos_b ) {
+        printf ("Números de pontos turisticos: Carta 1 venceu\n");
+    } else if (nturisticos < nturisticos_b) {
+        printf ("Números de pontos turisticos: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+    }
+    
+    if (escolhaopcao == 5) {
+    if (densidadepop < densidadepop_b ) {
+        printf ("Densidade Populacional: Carta 1 venceu\n");
+    } else if (densidadepop > densidadepop_b) {
+        printf ("Densidade Populacional: Carta 2 venceu\n");
+    } else {
+        printf ("Empate !!!\n");
+    }
+}
+
+
    
-    
-   
 
-  return 0;
+
+
+
+
+
+
+
+
+
+
+   return 0;
 }
